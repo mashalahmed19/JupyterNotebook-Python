@@ -1,0 +1,27 @@
+#Class for Metro Station
+class MetroStation:
+    TICKET_PRICE = 30
+
+    #Class within a Class for Ticket Machine
+    class TicketMachine:
+        def __init__(self):  
+            self.balance = 0
+
+        def insert_money(self, amount):
+            self.balance += amount
+
+        def buy_ticket(self):
+            if self.balance < MetroStation.TICKET_PRICE:
+                print("Insufficient funds to purchase a ticket. Please insert more money.")
+                return
+            self.balance -= MetroStation.TICKET_PRICE
+            print(f"Ticket purchased for Rs. {MetroStation.TICKET_PRICE}. \nYour remaining balance is Rs. {self.balance}.")
+
+    def __init__(self):
+        self.ticket_machine = self.TicketMachine()
+
+
+# Data :
+my_station = MetroStation()
+my_station.ticket_machine.insert_money(70)
+my_station.ticket_machine.buy_ticket()
